@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+  
+  /* Cores de tema claro */
+  --color-bg: #f8fafc;
+  --color-text: #0f172a;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-text-secondary: #475569;
+}
+
+/* Aplica o tema escuro quando o sistema está em modo escuro */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --color-bg: #0f172a;
+    --color-text: #f1f5f9;
+    --color-surface: #1e293b;
+    --color-border: #334155;
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+    --color-text-secondary: #94a3b8;
+  }
+}
+
+/* Tema escuro */
+:root[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-text: #f1f5f9;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-primary: #60a5fa;
+  --color-primary-hover: #3b82f6;
+  --color-text-secondary: #94a3b8;
+}
+
+/* Tema claro */
+:root[data-theme="light"] {
+  --color-bg: #f8fafc;
+  --color-text: #0f172a;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-text-secondary: #475569;
+}
+
+html[data-font-size="small"] {
+  font-size: var(--font-size-small);
+}
+
+html[data-font-size="medium"] {
+  font-size: var(--font-size-medium);
+}
+
+html[data-font-size="large"] {
+  font-size: var(--font-size-large);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.high-contrast {
+  filter: contrast(1.2);
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-200;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+
+  .text-primary {
+    color: var(--color-text);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .border-default {
+    border-color: var(--color-border);
+  }
+
+  .hover-surface:hover {
+    background-color: color-mix(in srgb, var(--color-surface) 95%, var(--color-text));
+  }
+}
